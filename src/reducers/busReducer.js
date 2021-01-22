@@ -2,7 +2,6 @@ import { ADD_BUS, GET_BUSES, GET_BUS } from "../actions/types";
 const initialState = {
   buses: [],
   bus: {},
-  loading: false,
 };
 
 export default function busReducer(state = initialState, action) {
@@ -17,14 +16,12 @@ export default function busReducer(state = initialState, action) {
       return {
         ...state,
         buses: action.payload,
-        loading: false,
       };
 
     case GET_BUS:
       return {
         ...state,
         bus: action.payload,
-        loading: false,
       };
 
     default:
