@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const registerUser = (userdata, history) => (dispatch) => {
   axios
-    .post("admin/register", userdata)
-    .then((res) => history.push("/login"))
+    .post("/admin/register", userdata)
+    .then((res) => history.push("/admin/login"))
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -15,7 +15,7 @@ export const registerUser = (userdata, history) => (dispatch) => {
 
 export const loginUser = (userdata) => (dispatch) => {
   axios
-    .post("admin/login", userdata)
+    .post("/admin/login", userdata)
     .then((res) => {
       dispatch(setAdminUser(res.data.user));
     })
