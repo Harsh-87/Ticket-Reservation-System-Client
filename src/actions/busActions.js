@@ -19,15 +19,16 @@ export const addBus = (busData) => (dispatch) => {
     );
 };
 
-export const getBuses = (query) => (dispatch) => {
+export const getBuses = (query, history) => (dispatch) => {
   axios
     .get("/bus", { params: query })
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: GET_BUSES,
         payload: res.data,
-      })
-    )
+      });
+      history.push("/buses");
+    })
     .catch((err) =>
       dispatch({
         type: GET_BUSES,

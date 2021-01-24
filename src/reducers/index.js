@@ -6,7 +6,7 @@ import errorReducer from "./errorsReducer";
 
 export default combineReducers({
   auth: authReducer,
-  bus: busReducer,
-  ticket: ticketReducer,
+  busData: busReducer,
+  ticketData: ticketReducer,
   errors: errorReducer,
 });
