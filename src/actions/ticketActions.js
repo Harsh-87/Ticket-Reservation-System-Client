@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SAVE_TICKET, GET_ERRORS, CLEAR_ERRORS } from "./types";
+import { SAVE_TICKET, CLEAR_ERRORS } from "./types";
 
 export const getTicket = (query) => (dispatch) => {
   axios
@@ -12,8 +12,8 @@ export const getTicket = (query) => (dispatch) => {
     )
     .catch((err) =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err,
+        type: SAVE_TICKET,
+        payload: {},
       })
     );
 };
@@ -30,8 +30,8 @@ export const bookTicket = (ticketData) => (dispatch) => {
     )
     .catch((err) =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err,
+        type: SAVE_TICKET,
+        payload: {},
       })
     );
 };
@@ -48,8 +48,8 @@ export const cancelTicket = (query) => (dispatch) => {
     )
     .catch((err) =>
       dispatch({
-        type: GET_ERRORS,
-        payload: err,
+        type: SAVE_TICKET,
+        payload: {},
       })
     );
 };

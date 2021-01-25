@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import SearchBuses from "./components/bus/searchBuses";
+import TicketStatus from "./components/tickets/ticketStatus";
 import BusList from "./components/bus/showBusList";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
               />
             </Switch>
             <Route exact path="/search-bus" component={SearchBuses} />
+            <Route exact path="/booking" component={TicketStatus} />
             <Route exact path="/buses" component={BusList} />
             <Footer />
           </div>
