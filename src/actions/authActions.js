@@ -29,7 +29,7 @@ export const loginUser = (userdata) => (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
   axios
-    .get("admin/logout")
+    .get("/admin/logout")
     .then((res) => {
       dispatch(setAdminUser({}));
     })

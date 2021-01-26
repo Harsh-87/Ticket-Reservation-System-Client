@@ -18,16 +18,17 @@ export const getTicket = (query) => (dispatch) => {
     );
 };
 
-export const bookTicket = (ticketData) => (dispatch) => {
+export const bookTicket = (ticketData, history) => (dispatch) => {
   dispatch(clearErrors());
   axios
     .post("/ticket", ticketData)
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: SAVE_TICKET,
         payload: res.data,
-      })
-    )
+      });
+      history.push("/status");
+    })
     .catch((err) =>
       dispatch({
         type: SAVE_TICKET,

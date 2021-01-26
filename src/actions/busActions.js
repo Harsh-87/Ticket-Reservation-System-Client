@@ -54,6 +54,23 @@ export const getBus = (id) => (dispatch) => {
     );
 };
 
+export const getBusAdmin = (id) => (dispatch) => {
+  axios
+    .get(`/bus/${id}/admin`)
+    .then((res) =>
+      dispatch({
+        type: GET_BUS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_BUS,
+        payload: null,
+      })
+    );
+};
+
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
