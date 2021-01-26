@@ -127,7 +127,6 @@ class CreateBus extends Component {
                       selected={this.state.departure}
                       placeholderText="Departure"
                       minDate={today}
-                      dateFormat="dd/MM/yyyy"
                       onSelect={this.onDepartureChange}
                       onChange={this.onDepartureChange}
                       timeInputLabel="Time:"
@@ -145,7 +144,6 @@ class CreateBus extends Component {
                       selected={this.state.arrival}
                       placeholderText="Arrival"
                       minDate={this.state.departure}
-                      dateFormat="dd/MM/yyyy"
                       onSelect={this.onArrivalChange}
                       onChange={this.onArrivalChange}
                       timeInputLabel="Time:"

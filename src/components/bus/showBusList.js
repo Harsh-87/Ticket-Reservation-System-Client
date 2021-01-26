@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BusItem from "./busItem";
 import store from "../../store";
 import { useHistory } from "react-router-dom";
