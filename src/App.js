@@ -9,12 +9,12 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
-import SearchBuses from "./components/bus/searchBuses";
-import TicketStatus from "./components/tickets/ticketStatus";
-import BookingStatus from "./components/tickets/bookingStatus";
-import BusList from "./components/bus/showBusList";
+import Container from "./pages/SearchBusesContainer";
+import TicketPNRStatusContainer from "./pages/TicketPNRStatusContainer";
+import BookingStatusContainer from "./pages/BookingStatusContainer";
+import BusSearchResultContainer from "./pages/BusSearchResultsContainer";
 import BusStatus from "./components/bus/findBus";
-import CreateBus from "./components/bus/createBus";
+import AddBusContainer from "./pages/AddBusContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
   render() {
@@ -34,15 +34,15 @@ class App extends Component {
               />
             </Switch>
             <Switch>
-              <PrivateRoute exact path="/add-bus" component={CreateBus} />
+              <PrivateRoute exact path="/add-bus" component={AddBusContainer} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/find-bus" component={BusStatus} />
             </Switch>
-            <Route exact path="/search-bus" component={SearchBuses} />
-            <Route exact path="/booking" component={TicketStatus} />
-            <Route exact path="/buses" component={BusList} />
-            <Route exact path="/status" component={BookingStatus} />
+            <Route exact path="/search-bus" component={Container} />
+            <Route exact path="/booking" component={TicketPNRStatusContainer} />
+            <Route exact path="/buses" component={BusSearchResultContainer} />
+            <Route exact path="/status" component={BookingStatusContainer} />
             <Footer />
           </div>
         </Router>

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addBus } from "../../actions/busActions";
-import SelectListGroup from "../common/SelectListGroup";
-import TextFieldGroup from "../common/TextFieldGroup";
+import { addBus } from "../actions/busActions";
+import SelectListGroup from "../components/common/SelectListGroup";
+import TextFieldGroup from "../components/common/TextFieldGroup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-class CreateBus extends Component {
+class AddBusContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -78,11 +78,11 @@ class CreateBus extends Component {
     ];
     return (
       <div className="search-box">
-        <div className="dark-overlay search-box-inner text-light">
+        <div className="dark-overlay text-light p-4">
           <div className="container">
-            <div className="col-md-8 m-auto">
+            <div className="col-8 m-auto">
               {this.state.success ? (
-                <p className="alert alert-success m-3">
+                <p className="alert alert-success mb-3">
                   Bus Added Successfully
                 </p>
               ) : (
@@ -206,7 +206,7 @@ class CreateBus extends Component {
   }
 }
 
-CreateBus.propTypes = {
+AddBusContainer.propTypes = {
   addBus: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -215,4 +215,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { addBus })(CreateBus);
+export default connect(mapStateToProps, { addBus })(AddBusContainer);

@@ -1,7 +1,7 @@
-import store from "../../store";
-import TicketCardComponent from "./TicketCardComponent";
+import store from "../store";
+import TicketCardComponent from "../components/tickets/TicketCardComponent";
 
-function BookingStatus() {
+function BookingStatusContainer() {
   const state = store.getState();
   const { ticket } = state.ticketData;
   let ticketComponent;
@@ -33,4 +33,4 @@ function BookingStatus() {
     </div>
   );
 }
-export default BookingStatus;
+export default BookingStatusContainer;

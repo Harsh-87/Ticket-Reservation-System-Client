@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBuses } from "../../actions/busActions";
-import SelectListGroup from "../common/SelectListGroup";
+import { getBuses } from "../actions/busActions";
+import SelectListGroup from "../components/common/SelectListGroup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-class SearchBuses extends Component {
+class SearchBusesContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -128,7 +128,7 @@ class SearchBuses extends Component {
   }
 }
 
-SearchBuses.propTypes = {
+SearchBusesContainer.propTypes = {
   getBuses: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -137,4 +137,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { getBuses })(SearchBuses);
+export default connect(mapStateToProps, { getBuses })(SearchBusesContainer);

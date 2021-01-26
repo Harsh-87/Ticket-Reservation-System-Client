@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getTicket, cancelTicket } from "../../actions/ticketActions";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TicketCardComponent from "./TicketCardComponent";
-class TicketStatus extends Component {
+import { getTicket, cancelTicket } from "../actions/ticketActions";
+import TextFieldGroup from "../components/common/TextFieldGroup";
+import TicketCardComponent from "../components/tickets/TicketCardComponent";
+
+class TicketPNRStatusContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -103,7 +104,7 @@ class TicketStatus extends Component {
   }
 }
 
-TicketStatus.propTypes = {
+TicketPNRStatusContainer.propTypes = {
   getTicket: PropTypes.func.isRequired,
   cancelTicket: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
@@ -115,5 +116,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getTicket, cancelTicket })(
-  TicketStatus
+  TicketPNRStatusContainer
 );

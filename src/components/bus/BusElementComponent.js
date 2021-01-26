@@ -6,7 +6,7 @@ import "../../assets/styles/Bus.css";
 import BusItemComponent from "./BusItemComponent";
 import BusPopupComponent from "./BusPopupComponent";
 
-class BusItem extends Component {
+class BusElementComponent extends Component {
   constructor() {
     super();
     this.state = {
@@ -77,7 +77,7 @@ class BusItem extends Component {
   }
 }
 
-BusItem.propTypes = {
+BusElementComponent.propTypes = {
   bookTicket: PropTypes.func.isRequired,
   bus: PropTypes.object.isRequired,
 };
@@ -86,4 +86,4 @@ const mapStateToProps = (state) => ({
   busData: state.busData,
 });
 
-export default connect(mapStateToProps, { bookTicket })(BusItem);
+export default connect(mapStateToProps, { bookTicket })(BusElementComponent);
