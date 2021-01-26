@@ -1,27 +1,11 @@
-import bus_pic from "../../assets/images/bus2.jpg";
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bookTicket } from "../../actions/ticketActions";
-import TextFieldGroup from "../common/TextFieldGroup";
-import BusLayoutComponent from "./BusLayoutComponent";
+import "../../assets/styles/Bus.css";
+import BusItemComponent from "./BusItemComponent";
+import BusPopupComponent from "./BusPopupComponent";
 
-function DateElement({ date }) {
-  return (
-    <div>
-      <p className="m-0" style={{ fontSize: "30px" }}>
-        {date.toLocaleTimeString([], { timeStyle: "short" })}
-      </p>
-      <p className="m-0">
-        {date.toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}
-      </p>
-    </div>
-  );
-}
 class BusItem extends Component {
   constructor() {
     super();
@@ -36,8 +20,8 @@ class BusItem extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onClicked = this.onClicked.bind(this);
-    this.seatSelection = this.seatSelection.bind(this);
+    this.toggleView = this.toggleView.bind(this);
+    this.onSeatSelected = this.onSeatSelected.bind(this);
   }
 
   onChange(e) {
@@ -46,7 +30,7 @@ class BusItem extends Component {
     });
   }
 
-  onClicked() {
+  toggleView() {
     this.setState({ showLayout: !this.state.showLayout });
   }
 
@@ -69,185 +53,25 @@ class BusItem extends Component {
     }
   }
 
-  seatSelection(seat) {
+  onSeatSelected(seat) {
     this.setState({ seat_no: seat.seat_no });
     console.log(seat);
   }
 
   render() {
     const bus = this.props.bus;
-    const departure = new Date(bus.departure);
-    const arrival = new Date(bus.arrival);
     const busItemComponent = (
-      <div className="card card-body bg-light mx-5 my-2">
-        <div className="row align-items-center">
-          <div className="col-2">
-            <div height="100px" width="100px">
-              <img className="rounded-circle" src={bus_pic} alt="BusPic" />
-            </div>
-          </div>
-          <div className="col-10 border-left">
-            <div className="row mx-5">
-              <div className="col-9 text-left">
-                <span className="h2 m-0">{bus.Company}</span>
-              </div>
-              <div className="col-3 text-right">
-                <button
-                  onClick={this.onClicked.bind(this)}
-                  className="btn btn-info"
-                >
-                  Book Ticket
-                </button>
-              </div>
-            </div>
-            <div className="row align-content-center mx-5">
-              <div className="col-3 text-left">
-                <DateElement date={departure} />
-                <p className="mb-2">{bus.from}</p>
-              </div>
-              <div className="col-6">
-                <hr />
-              </div>
-              <div className="col-3 text-right">
-                <DateElement date={arrival} />
-                <p className="mb-2">{bus.to}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <BusItemComponent toggleView={this.toggleView} bus={bus} />
     );
     const busLayoutComponent = (
-      <div
-        className="text-left p-4 border"
-        style={{
-          position: "fixed",
-          width: "90%",
-          height: "90%",
-          left: "5%",
-          top: "8%",
-          background: "white",
-          zIndex: "10",
-        }}
-      >
-        <button
-          className="btn btn-secondary"
-          onClick={this.onClicked.bind(this)}
-        >
-          Go Back
-        </button>
-        <div className="card card-body bg-light mx-5 my-2">
-          <div className="row align-items-center">
-            <div className="col-5">
-              <div height="100px" width="100px">
-                <BusLayoutComponent
-                  bus={this.props.bus}
-                  onSeatSelected={this.seatSelection}
-                  selectedSeat={this.state.seat_no}
-                />
-              </div>
-            </div>
-            <div className="col-7 border-left">
-              <div className="row mx-5">
-                <div className="col-9 text-left">
-                  <span className="h2 m-0">{bus.Company}</span>
-                </div>
-              </div>
-              <div className="row align-content-center mx-5">
-                <div className="col-4 text-left">
-                  <DateElement date={departure} />
-                  <p className="mb-4">{bus.from}</p>
-                </div>
-                <div className="col-4">
-                  <hr />
-                </div>
-                <div className="col-4 text-right">
-                  <DateElement date={arrival} />
-                  <p className="mb-2">{bus.to}</p>
-                </div>
-              </div>
-
-              <form onSubmit={this.onSubmit}>
-                <div className="row text-center justify-content-center">
-                  <p className="text-primary h3 p-2">Details</p>
-                </div>
-                <div className="row text-left justify-content-center">
-                  <div className="col-4">
-                    <label>Firstname</label>
-                    <TextFieldGroup
-                      type="text"
-                      placeholder="First Name"
-                      name="firstname"
-                      value={this.state.firstname}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label>Last Name</label>
-                    <TextFieldGroup
-                      type="text"
-                      placeholder="Last Name"
-                      name="lastname"
-                      value={this.state.lastname}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="col-2">
-                    <label>Age</label>
-                    <TextFieldGroup
-                      type="number"
-                      placeholder="Age"
-                      name="age"
-                      value={this.state.age}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                </div>
-                <div className="row text-left justify-content-center">
-                  <div className="col-4">
-                    <label>Email</label>
-                    <TextFieldGroup
-                      type="text"
-                      placeholder="Email"
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="col-4">
-                    <label>Mobile</label>
-                    <TextFieldGroup
-                      type="text"
-                      placeholder="Mobile"
-                      name="mobile"
-                      value={this.state.mobile}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="col-2">
-                    <label>Seat No</label>
-                    <TextFieldGroup
-                      type="text"
-                      placeholder="Seat No"
-                      name="seat_no"
-                      value={this.state.seat_no}
-                      onChange={this.onChange}
-                      disabled
-                    />
-                  </div>
-                </div>
-                <div className="row  justify-content-center ">
-                  <div className="col-6 text-center">
-                    <button className="btn btn-info" type="submit">
-                      <span>Book</span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      <BusPopupComponent
+        toggleView={this.toggleView}
+        bus={bus}
+        state={this.state}
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        onSeatSelected={this.onSeatSelected}
+      />
     );
     return this.state.showLayout ? busLayoutComponent : busItemComponent;
   }

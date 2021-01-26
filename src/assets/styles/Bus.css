@@ -27,3 +27,14 @@
 .marginTop {
   margin-top: 50px;
 }
+
+.floatLayout {
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 8%;
+  background: white;
+  z-index: 10;
+  box-shadow: 5px 5px 5px 5px #888888;
+}

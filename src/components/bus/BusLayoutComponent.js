@@ -1,5 +1,3 @@
-import "../../assets/styles/Bus.css";
-
 function OpenSeat(seat, onSeatSelected) {
   return (
     <div className="col-3">
@@ -39,13 +37,14 @@ function BusLayoutComponent(props) {
     <div className="border p-3">
       <div className="row">
         <div className="col-4">
-          <span className="btn btn-info selectedSeat disabled"></span>Selected
+          <span className="btn btn-info selectedSeat disabled"></span> Selected
         </div>
         <div className="col-4">
-          <span className="btn btn-danger selectedSeat disabled"></span>Reserved
+          <span className="btn btn-danger selectedSeat disabled"></span>{" "}
+          Reserved
         </div>
         <div className="col-4">
-          <span className="btn btn-light selectedSeat"></span>Available
+          <span className="btn btn-light selectedSeat"></span> Available
         </div>
       </div>
       <div className="row marginTop">
