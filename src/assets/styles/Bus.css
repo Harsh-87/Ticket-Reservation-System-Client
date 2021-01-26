@@ -1,0 +1,29 @@
+.openSeat {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.openSeat:hover {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.closeSeat {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.selectedSeat {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.marginTop {
+  margin-top: 50px;
+}

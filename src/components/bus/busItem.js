@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bookTicket } from "../../actions/ticketActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import BusLayoutComponent from "./BusLayoutComponent";
 
 function DateElement({ date }) {
   return (
@@ -36,7 +37,7 @@ class BusItem extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onClicked = this.onClicked.bind(this);
-    this.onSeatSelected = this.onSeatSelected.bind(this);
+    this.seatSelection = this.seatSelection.bind(this);
   }
 
   onChange(e) {
@@ -68,52 +69,12 @@ class BusItem extends Component {
     }
   }
 
-  onSeatSelected(seat) {
+  seatSelection(seat) {
     this.setState({ seat_no: seat.seat_no });
-  }
-
-  SeatElement(seat) {
-    if (seat.seat_no === this.state.seat_no) {
-      return (
-        <div className="col-3">
-          <button
-            className="btn btn-info border p-1 m-1 rounded"
-            style={{ width: "30px", height: "30px" }}
-          >
-            {seat.seat_no}
-          </button>
-        </div>
-      );
-    } else if (seat.status === "open") {
-      return (
-        <div className="col-3">
-          <button
-            onClick={this.onSeatSelected.bind(this, seat)}
-            className="btn btn-light border p-1 m-1 rounded"
-            style={{ width: "30px", height: "30px" }}
-          >
-            {seat.seat_no}
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div className="col-3">
-          <button
-            onClick={this.onSeatSelected.bind(this, seat)}
-            className="btn btn-danger p-1 m-1"
-            disabled
-            style={{ width: "30px", height: "30px" }}
-          >
-            {seat.seat_no}
-          </button>
-        </div>
-      );
-    }
+    console.log(seat);
   }
 
   render() {
-    console.log(this.props);
     const bus = this.props.bus;
     const departure = new Date(bus.departure);
     const arrival = new Date(bus.arrival);
@@ -156,19 +117,6 @@ class BusItem extends Component {
         </div>
       </div>
     );
-    const seatingArrangement = (
-      <div className="border p-3">
-        <div className="row">
-          <div className="col-6"></div>
-          <div className="col-4 text-right">
-            <i className="fas fa-user p-3"></i>
-          </div>
-        </div>
-        <div className="row">
-          {bus.seats.map((seat) => this.SeatElement(seat))}
-        </div>
-      </div>
-    );
     const busLayoutComponent = (
       <div
         className="text-left p-4 border"
@@ -192,8 +140,11 @@ class BusItem extends Component {
           <div className="row align-items-center">
             <div className="col-5">
               <div height="100px" width="100px">
-                <p className="h4">Bus View</p>
-                {seatingArrangement}
+                <BusLayoutComponent
+                  bus={this.props.bus}
+                  onSeatSelected={this.seatSelection}
+                  selectedSeat={this.state.seat_no}
+                />
               </div>
             </div>
             <div className="col-7 border-left">
