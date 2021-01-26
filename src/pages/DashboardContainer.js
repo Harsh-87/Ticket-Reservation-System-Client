@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Dashboard extends Component {
+class DashboardContainer extends Component {
   render() {
     return (
       <div className="search-box">
@@ -36,4 +36,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default DashboardContainer;

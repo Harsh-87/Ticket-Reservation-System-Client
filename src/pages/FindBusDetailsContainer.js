@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBusAdmin } from "../../actions/busActions";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TicketCardComponent from "../tickets/TicketCardComponent";
+import { getBusAdmin } from "../actions/busActions";
+import TextFieldGroup from "../components/common/TextFieldGroup";
+import TicketCardComponent from "../components/tickets/TicketCardComponent";
 
-class BusStatus extends Component {
+class FindBusDetailsContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -82,7 +82,7 @@ class BusStatus extends Component {
   }
 }
 
-BusStatus.propTypes = {
+FindBusDetailsContainer.propTypes = {
   getBusAdmin: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
@@ -92,4 +92,6 @@ const mapStateToProps = (state) => ({
   busData: state.busData,
 });
 
-export default connect(mapStateToProps, { getBusAdmin })(BusStatus);
+export default connect(mapStateToProps, { getBusAdmin })(
+  FindBusDetailsContainer
+);
