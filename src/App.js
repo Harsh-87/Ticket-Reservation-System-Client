@@ -11,7 +11,10 @@ import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import SearchBuses from "./components/bus/searchBuses";
 import TicketStatus from "./components/tickets/ticketStatus";
+import BookingStatus from "./components/tickets/bookingStatus";
 import BusList from "./components/bus/showBusList";
+import BusStatus from "./components/bus/findBus";
+import CreateBus from "./components/bus/createBus";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
   render() {
@@ -30,9 +33,16 @@ class App extends Component {
                 component={Dashboard}
               />
             </Switch>
+            <Switch>
+              <PrivateRoute exact path="/add-bus" component={CreateBus} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/find-bus" component={BusStatus} />
+            </Switch>
             <Route exact path="/search-bus" component={SearchBuses} />
             <Route exact path="/booking" component={TicketStatus} />
             <Route exact path="/buses" component={BusList} />
+            <Route exact path="/status" component={BookingStatus} />
             <Footer />
           </div>
         </Router>

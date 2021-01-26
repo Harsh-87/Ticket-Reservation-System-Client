@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getBuses } from "../../actions/busActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import SelectListGroup from "../common/SelectListGroup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -51,7 +51,14 @@ class SearchBuses extends Component {
   render() {
     const { errors } = this.state;
     const today = new Date();
-
+    const options = [
+      { label: "Select City", value: 0 },
+      { label: "Delhi", value: "Delhi" },
+      { label: "Kolkata", value: "Kolkata" },
+      { label: "Mumbai", value: "Mumbai" },
+      { label: "Ranchi", value: "Ranchi" },
+      { label: "Lucknow", value: "Lucknow" },
+    ];
     return (
       <div className="search-box">
         <div className="dark-overlay search-box-inner text-light">
@@ -61,24 +68,26 @@ class SearchBuses extends Component {
                 <div className="row text-left">
                   <div className="col-4">
                     <label className="text-white">From</label>
-                    <TextFieldGroup
-                      type="text"
-                      error={errors.text}
+                    <SelectListGroup
                       placeholder="From"
                       name="from"
                       value={this.state.from}
                       onChange={this.onChange}
+                      onSelect={this.onChange}
+                      options={options}
+                      error={errors.text}
                     />
                   </div>
                   <div className="col-4">
                     <label className="text-white">To</label>
-                    <TextFieldGroup
-                      type="text"
-                      error={errors.text}
+                    <SelectListGroup
                       placeholder="To"
                       name="to"
                       value={this.state.to}
                       onChange={this.onChange}
+                      onSelect={this.onChange}
+                      options={options}
+                      error={errors.text}
                     />
                   </div>
                   <div className="col-4">
