@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addBus } from "../actions/busActions";
+import { addBus, clearData } from "../actions/busActions";
 import SelectListGroup from "../components/common/SelectListGroup";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 import DatePicker from "react-datepicker";
@@ -41,6 +41,10 @@ class AddBusContainer extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.props.clearData();
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const query = {
@@ -67,6 +71,7 @@ class AddBusContainer extends Component {
 
   render() {
     const { errors } = this.state;
+    const { bus } = this.props.busData;
     const today = new Date();
     const options = [
       { label: "Select City", value: 0 },
@@ -83,7 +88,7 @@ class AddBusContainer extends Component {
             <div className="col-8 m-auto">
               {this.state.success ? (
                 <p className="alert alert-success mb-3">
-                  Bus Added Successfully
+                  Bus Added Successfully : {bus._id}
                 </p>
               ) : (
                 ""
@@ -208,11 +213,14 @@ class AddBusContainer extends Component {
 
 AddBusContainer.propTypes = {
   addBus: PropTypes.func.isRequired,
+  busData: PropTypes.object.isRequired,
+  clearData: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  busData: state.busData,
 });
 
-export default connect(mapStateToProps, { addBus })(AddBusContainer);
+export default connect(mapStateToProps, { addBus, clearData })(AddBusContainer);

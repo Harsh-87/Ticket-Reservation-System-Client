@@ -4,7 +4,7 @@ import JourneyComponent from "./JourneyComponent";
 function BusItemComponent(props) {
   const { toggleView, bus } = props;
   return (
-    <div className="card card-body bg-light mx-5 my-2">
+    <div className="card card-body bg-light mx-5 my-4 busItem">
       <div className="row align-items-center">
         <div className="col-2">
           <img className="rounded-circle" src={bus_pic} alt="BusPic" />

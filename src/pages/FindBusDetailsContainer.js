@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBusAdmin } from "../actions/busActions";
+import { clearData, getBusAdmin } from "../actions/busActions";
 import TextFieldGroup from "../components/common/TextFieldGroup";
-import TicketCardComponent from "../components/tickets/TicketCardComponent";
+import TicketInfoComponent from "../components/tickets/TicketInfoComponent";
+import BusLayoutComponent from "../components/bus/BusLayoutComponent";
+import "../assets/styles/Ticket.css";
+import JourneyComponent from "../components/bus/JourneyComponent";
 
 class FindBusDetailsContainer extends Component {
   constructor() {
     super();
     this.state = {
       busId: "",
+      seat_no: 0,
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSeatSelected = this.onSeatSelected.bind(this);
   }
 
   onChange(e) {
@@ -27,22 +32,53 @@ class FindBusDetailsContainer extends Component {
     this.props.getBusAdmin(this.state.busId);
   }
 
+  onSeatSelected(seat) {
+    this.setState({ seat_no: seat.seat_no });
+  }
+
+  componentWillUnmount() {
+    this.props.clearData();
+  }
+
   render() {
     const { errors } = this.state;
     const { bus } = this.props.busData;
     let ticketComponents;
     if (bus?._id) {
-      ticketComponents = bus.seats.map((seat) =>
-        seat.status === "close" ? (
-          <TicketCardComponent ticket={seat.ticket_id} showBusInfo={false} />
-        ) : (
-          ""
-        )
+      ticketComponents = (
+        <div className="card card-body bg-light">
+          <div className="row text-dark">
+            <div className="col-12">
+              <JourneyComponent bus={bus} />
+            </div>
+          </div>
+          <div className="row align-items-center">
+            <div className="col-5">
+              <div>
+                <BusLayoutComponent
+                  bus={bus}
+                  onSeatSelected={this.onSeatSelected}
+                  selectedSeat={this.state.seat_no}
+                  admin={true}
+                />
+              </div>
+            </div>
+            <div className="col-7 text-dark">
+              {this.state.seat_no === 0 ? (
+                "Select a Seat"
+              ) : (
+                <TicketInfoComponent
+                  ticket={bus.seats[this.state.seat_no - 1]}
+                />
+              )}
+            </div>
+          </div>
+        </div>
       );
     }
     return (
       <div className="search-box">
-        <div className="dark-overlay search-box-inner text-light">
+        <div className="dark-overlay pt-5 text-light">
           <div className="container">
             <div className="col-md-8 m-auto">
               <form onSubmit={this.onSubmit}>
@@ -84,6 +120,7 @@ class FindBusDetailsContainer extends Component {
 
 FindBusDetailsContainer.propTypes = {
   getBusAdmin: PropTypes.func.isRequired,
+  clearData: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
@@ -92,6 +129,6 @@ const mapStateToProps = (state) => ({
   busData: state.busData,
 });
 
-export default connect(mapStateToProps, { getBusAdmin })(
+export default connect(mapStateToProps, { getBusAdmin, clearData })(
   FindBusDetailsContainer
 );

@@ -1,4 +1,4 @@
-import { SAVE_TICKET } from "../actions/types";
+import { CLEAR_DATA, SAVE_TICKET } from "../actions/types";
 const initialState = {
   ticket: {},
 };
@@ -9,6 +9,11 @@ export default function ticketReducer(state = initialState, action) {
       return {
         ...state,
         ticket: action.payload,
+      };
+    case CLEAR_DATA:
+      return {
+        ...state,
+        ticket: {},
       };
 
     default:

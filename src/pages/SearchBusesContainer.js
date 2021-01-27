@@ -130,6 +130,7 @@ class SearchBusesContainer extends Component {
 
 SearchBusesContainer.propTypes = {
   getBuses: PropTypes.func.isRequired,
+  clearData: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 

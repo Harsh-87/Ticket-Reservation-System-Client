@@ -1,4 +1,4 @@
-import { ADD_BUS, GET_BUSES, GET_BUS } from "../actions/types";
+import { ADD_BUS, GET_BUSES, GET_BUS, CLEAR_DATA } from "../actions/types";
 const initialState = {
   buses: [],
   bus: {},
@@ -9,7 +9,7 @@ export default function busReducer(state = initialState, action) {
     case ADD_BUS:
       return {
         ...state,
-        buses: [action.payload, ...state.buses],
+        bus: action.payload,
       };
 
     case GET_BUSES:
@@ -22,6 +22,13 @@ export default function busReducer(state = initialState, action) {
       return {
         ...state,
         bus: action.payload,
+      };
+
+    case CLEAR_DATA:
+      return {
+        ...state,
+        bus: {},
+        buses: [],
       };
 
     default:

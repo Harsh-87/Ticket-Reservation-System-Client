@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SAVE_TICKET, CLEAR_ERRORS } from "./types";
+import { SAVE_TICKET, CLEAR_ERRORS, CLEAR_DATA } from "./types";
 
 export const getTicket = (query) => (dispatch) => {
   axios
@@ -53,6 +53,13 @@ export const cancelTicket = (query) => (dispatch) => {
         payload: {},
       })
     );
+};
+
+export const clearData = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_DATA,
+    payload: {},
+  });
 };
 
 export const clearErrors = () => {

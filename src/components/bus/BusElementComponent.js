@@ -2,7 +2,6 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bookTicket } from "../../actions/ticketActions";
-import "../../assets/styles/Bus.css";
 import BusItemComponent from "./BusItemComponent";
 import BusPopupComponent from "./BusPopupComponent";
 

@@ -23,30 +23,48 @@ class App extends Component {
         <Router>
           <div className="App">
             <NavBar />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/admin/register" component={RegisterContainer} />
-            <Route exact path="/admin/login" component={LoginContainer} />
-            <Switch>
-              <PrivateRoute
+            <div style={{ minHeight: "75vh" }}>
+              <Route exact path="/" component={Landing} />
+              <Route
                 exact
-                path="/admin/dashboard"
-                component={DashboardContainer}
+                path="/admin/register"
+                component={RegisterContainer}
               />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/add-bus" component={AddBusContainer} />
-            </Switch>
-            <Switch>
-              <PrivateRoute
+              <Route exact path="/admin/login" component={LoginContainer} />
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/admin/dashboard"
+                  component={DashboardContainer}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-bus"
+                  component={AddBusContainer}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/find-bus"
+                  component={FindBusDetailsContainer}
+                />
+              </Switch>
+              <Route
                 exact
-                path="/find-bus"
-                component={FindBusDetailsContainer}
+                path="/search-bus"
+                component={SearchBusesContainer}
               />
-            </Switch>
-            <Route exact path="/search-bus" component={SearchBusesContainer} />
-            <Route exact path="/booking" component={TicketPNRStatusContainer} />
-            <Route exact path="/buses" component={BusSearchResultContainer} />
-            <Route exact path="/status" component={BookingStatusContainer} />
+              <Route
+                exact
+                path="/booking"
+                component={TicketPNRStatusContainer}
+              />
+              <Route exact path="/buses" component={BusSearchResultContainer} />
+              <Route exact path="/status" component={BookingStatusContainer} />
+            </div>
             <Footer />
           </div>
         </Router>

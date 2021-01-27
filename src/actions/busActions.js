@@ -1,5 +1,12 @@
 import axios from "axios";
-import { ADD_BUS, GET_BUSES, GET_BUS, GET_ERRORS, CLEAR_ERRORS } from "./types";
+import {
+  ADD_BUS,
+  GET_BUSES,
+  GET_BUS,
+  GET_ERRORS,
+  CLEAR_ERRORS,
+  CLEAR_DATA,
+} from "./types";
 
 export const addBus = (busData) => (dispatch) => {
   dispatch(clearErrors());
@@ -69,6 +76,13 @@ export const getBusAdmin = (id) => (dispatch) => {
         payload: null,
       })
     );
+};
+
+export const clearData = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_DATA,
+    payload: {},
+  });
 };
 
 export const clearErrors = () => {

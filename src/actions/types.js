@@ -6,3 +6,4 @@ export const ADD_BUS = "ADD_BUS";
 export const GET_BUSES = "GET_BUSES";
 export const GET_BUS = "GET_BUS";
 export const SAVE_TICKET = "SAVE_TICKET";
+export const CLEAR_DATA = "CLEAR_DATA";

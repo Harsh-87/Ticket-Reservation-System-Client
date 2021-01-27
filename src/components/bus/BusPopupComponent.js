@@ -16,6 +16,7 @@ function BusPopupComponent(props) {
               bus={bus}
               onSeatSelected={onSeatSelected}
               selectedSeat={state.seat_no}
+              admin={false}
             />
           </div>
         </div>
