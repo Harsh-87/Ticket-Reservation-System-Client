@@ -6,15 +6,15 @@ import store from "./store";
 import NavBar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
-import LoginContainer from "./pages/LoginContainer";
-import RegisterContainer from "./pages/RegisterContainer";
-import DashboardContainer from "./pages/DashboardContainer";
-import SearchBusesContainer from "./pages/SearchBusesContainer";
-import TicketPNRStatusContainer from "./pages/TicketPNRStatusContainer";
-import BookingStatusContainer from "./pages/BookingStatusContainer";
-import BusSearchResultContainer from "./pages/BusSearchResultsContainer";
-import FindBusDetailsContainer from "./pages/FindBusDetailsContainer";
-import AddBusContainer from "./pages/AddBusContainer";
+import LoginContainer from "./containers/LoginContainer";
+import RegisterContainer from "./containers/RegisterContainer";
+import DashboardContainer from "./containers/DashboardContainer";
+import SearchBusesContainer from "./containers/SearchBusesContainer";
+import TicketPNRStatusContainer from "./containers/TicketPNRStatusContainer";
+import BookingStatusContainer from "./containers/BookingStatusContainer";
+import BusSearchResultContainer from "./containers/BusSearchResultsContainer";
+import FindBusDetailsContainer from "./containers/FindBusDetailsContainer";
+import AddBusContainer from "./containers/AddBusContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
   render() {
