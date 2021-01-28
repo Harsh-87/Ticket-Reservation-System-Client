@@ -19,7 +19,6 @@ class AddBusContainer extends Component {
       bus_no: "",
       no_of_seats: 40,
       success: false,
-      errors: {},
     };
     this.onDepartureChange = this.onDepartureChange.bind(this);
     this.onArrivalChange = this.onArrivalChange.bind(this);
@@ -70,7 +69,6 @@ class AddBusContainer extends Component {
   }
 
   render() {
-    const { errors } = this.state;
     const { bus } = this.props.busData;
     const today = new Date();
     const options = [
@@ -105,7 +103,7 @@ class AddBusContainer extends Component {
                       onChange={this.onChange}
                       onSelect={this.onChange}
                       options={options}
-                      error={errors.text}
+                      error={null}
                     />
                   </div>
                 </div>
@@ -119,7 +117,7 @@ class AddBusContainer extends Component {
                       onChange={this.onChange}
                       onSelect={this.onChange}
                       options={options}
-                      error={errors.text}
+                      error={null}
                     />
                   </div>
                 </div>
@@ -215,11 +213,9 @@ AddBusContainer.propTypes = {
   addBus: PropTypes.func.isRequired,
   busData: PropTypes.object.isRequired,
   clearData: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  errors: state.errors,
   busData: state.busData,
 });
 

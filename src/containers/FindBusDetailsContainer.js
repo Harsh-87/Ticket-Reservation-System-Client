@@ -14,7 +14,6 @@ class FindBusDetailsContainer extends Component {
     this.state = {
       busId: "",
       seat_no: 0,
-      errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -41,7 +40,6 @@ class FindBusDetailsContainer extends Component {
   }
 
   render() {
-    const { errors } = this.state;
     const { bus } = this.props.busData;
     let ticketComponents;
     if (bus?._id) {
@@ -87,7 +85,7 @@ class FindBusDetailsContainer extends Component {
                     <label className="text-white">Bus Id</label>
                     <TextFieldGroup
                       type="text"
-                      error={errors.text}
+                      error={null}
                       placeholder="Bus Id"
                       name="busId"
                       value={this.state.busId}
@@ -121,11 +119,9 @@ class FindBusDetailsContainer extends Component {
 FindBusDetailsContainer.propTypes = {
   getBusAdmin: PropTypes.func.isRequired,
   clearData: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  errors: state.errors,
   busData: state.busData,
 });
 
