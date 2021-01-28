@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -16,9 +16,9 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/admin/dashboard">
+          <NavLink className="nav-link" to="/admin/dashboard">
             Dashboard
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item">
           <a
@@ -40,14 +40,14 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/booking">
+          <NavLink className="nav-link" to="/booking">
             Bookings
-          </Link>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/search-bus">
+          <NavLink className="nav-link" to="/search-bus">
             Search
-          </Link>
+          </NavLink>
         </li>
       </ul>
     );
@@ -55,9 +55,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-secondary mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <NavLink className="navbar-brand" to="/">
             Bus Reservation System
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
