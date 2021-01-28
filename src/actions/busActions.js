@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axiosInstance";
 import {
   ADD_BUS,
   GET_BUSES,

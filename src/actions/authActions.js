@@ -1,5 +1,5 @@
 import { GET_ERRORS, SET_ADMIN_USER } from "./types";
-import axios from "axios";
+import axios from "../axiosInstance";
 
 export const registerUser = (userdata, history) => (dispatch) => {
   axios

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axiosInstance";
 import { SAVE_TICKET, CLEAR_ERRORS, CLEAR_DATA } from "./types";
 
 export const getTicket = (query) => (dispatch) => {
