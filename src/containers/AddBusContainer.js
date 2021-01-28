@@ -150,7 +150,7 @@ class AddBusContainer extends Component {
                       onSelect={this.onArrivalChange}
                       onChange={this.onArrivalChange}
                       timeInputLabel="Time:"
-                      dateFormat="MM/dd/yyyy h:mm aa"
+                      dateFormat="dd/MM/yyyy h:mm aa"
                       showTimeInput
                     />
                   </div>
