@@ -54,7 +54,6 @@ class BusElementComponent extends Component {
 
   onSeatSelected(seat) {
     this.setState({ seat_no: seat.seat_no });
-    console.log(seat);
   }
 
   render() {
