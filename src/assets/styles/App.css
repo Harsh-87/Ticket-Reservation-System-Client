@@ -93,3 +93,7 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.react-datepicker-wrapper input {
+  background: white;
+}
