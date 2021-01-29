@@ -45,7 +45,7 @@ class Login extends Component {
   }
 
   static getDerivedStateFromProps(newProps, state) {
-    if (newProps.errors != state.errors) {
+    if (newProps.errors !== state.errors) {
       return { errors: newProps.errors };
     }
     return null;
