@@ -19,6 +19,7 @@ class AddBusContainer extends Component {
       bus_no: "",
       no_of_seats: 40,
       success: false,
+      error: false,
     };
     this.onDepartureChange = this.onDepartureChange.bind(this);
     this.onArrivalChange = this.onArrivalChange.bind(this);
@@ -44,8 +45,9 @@ class AddBusContainer extends Component {
     this.props.clearData();
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
+    this.setState({ error: false, success: false });
     const query = {
       from: this.state.from,
       to: this.state.to,
@@ -55,9 +57,8 @@ class AddBusContainer extends Component {
       Company: this.state.Company,
       bus_no: this.state.bus_no,
     };
-    this.props.addBus(query);
-    this.setState({
-      success: true,
+    const busId = await this.props.addBus(query);
+    const newState = {
       from: "",
       to: "",
       departure: new Date(),
@@ -65,7 +66,13 @@ class AddBusContainer extends Component {
       Company: "",
       bus_no: "",
       no_of_seats: 40,
-    });
+    };
+    if (busId) {
+      newState.success = true;
+    } else {
+      newState.error = true;
+    }
+    this.setState(newState);
   }
 
   render() {
@@ -88,6 +95,8 @@ class AddBusContainer extends Component {
                 <p className="alert alert-success mb-3">
                   Bus Added Successfully : {bus._id}
                 </p>
+              ) : this.state.error ? (
+                <p className="alert alert-danger mb-3">Some error occured!</p>
               ) : (
                 ""
               )}

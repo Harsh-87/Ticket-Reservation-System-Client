@@ -8,22 +8,24 @@ import {
   CLEAR_DATA,
 } from "./types";
 
-export const addBus = (busData) => (dispatch) => {
+export const addBus = (busData) => async (dispatch) => {
   dispatch(clearErrors());
-  axios
+  return await axios
     .post("/bus", busData)
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: ADD_BUS,
         payload: res.data,
-      })
-    )
-    .catch((err) =>
+      });
+      return res.data._id;
+    })
+    .catch((err) => {
       dispatch({
         type: GET_ERRORS,
         payload: err,
-      })
-    );
+      });
+      return null;
+    });
 };
 
 export const getBuses = (query) => async (dispatch) => {
