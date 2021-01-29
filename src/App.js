@@ -1,8 +1,6 @@
 import "./assets/styles/App.css";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
 import NavBar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
@@ -16,61 +14,84 @@ import BusSearchResultContainer from "./containers/BusSearchResultsContainer";
 import FindBusDetailsContainer from "./containers/FindBusDetailsContainer";
 import AddBusContainer from "./containers/AddBusContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
+import { verifyAdmin } from "./actions/authActions";
+import { connect } from "react-redux";
+
 class App extends Component {
+  state = {
+    isLoading: true,
+  };
+
+  async componentDidMount() {
+    await this.props.verifyAdmin();
+    this.setState({ isLoading: false });
+  }
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <NavBar />
-            <div style={{ minHeight: "75vh" }}>
-              <Route exact path="/" component={Landing} />
-              <Route
-                exact
-                path="/admin/register"
-                component={RegisterContainer}
-              />
-              <Route exact path="/admin/login" component={LoginContainer} />
-              <Switch>
-                <PrivateRoute
+      <Router>
+        <div className="App">
+          <NavBar />
+          <div style={{ minHeight: "75vh" }}>
+            {this.state.isLoading ? (
+              <div>Loading</div>
+            ) : (
+              <>
+                <Route exact path="/" component={Landing} />
+                <Route
                   exact
-                  path="/admin/dashboard"
-                  component={DashboardContainer}
+                  path="/admin/register"
+                  component={RegisterContainer}
                 />
-              </Switch>
-              <Switch>
-                <PrivateRoute
+                <Route exact path="/admin/login" component={LoginContainer} />
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/admin/dashboard"
+                    component={DashboardContainer}
+                  />
+                </Switch>
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/add-bus"
+                    component={AddBusContainer}
+                  />
+                </Switch>
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/find-bus"
+                    component={FindBusDetailsContainer}
+                  />
+                </Switch>
+                <Route
                   exact
-                  path="/add-bus"
-                  component={AddBusContainer}
+                  path="/search-bus"
+                  component={SearchBusesContainer}
                 />
-              </Switch>
-              <Switch>
-                <PrivateRoute
+                <Route
                   exact
-                  path="/find-bus"
-                  component={FindBusDetailsContainer}
+                  path="/booking"
+                  component={TicketPNRStatusContainer}
                 />
-              </Switch>
-              <Route
-                exact
-                path="/search-bus"
-                component={SearchBusesContainer}
-              />
-              <Route
-                exact
-                path="/booking"
-                component={TicketPNRStatusContainer}
-              />
-              <Route exact path="/buses" component={BusSearchResultContainer} />
-              <Route exact path="/status" component={BookingStatusContainer} />
-            </div>
-            <Footer />
+                <Route
+                  exact
+                  path="/buses"
+                  component={BusSearchResultContainer}
+                />
+                <Route
+                  exact
+                  path="/status"
+                  component={BookingStatusContainer}
+                />
+              </>
+            )}
           </div>
-        </Router>
-      </Provider>
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+export default connect(null, { verifyAdmin })(App);
