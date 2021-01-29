@@ -39,7 +39,7 @@ class SearchBusesContainer extends Component {
       to: this.state.to,
       departure: departure,
     };
-    this.props.getBuses(query, this.props.history);
+    this.props.getBuses(query).then((val) => this.props.history.push("/buses"));
   }
 
   componentWillReceiveProps(newProps) {

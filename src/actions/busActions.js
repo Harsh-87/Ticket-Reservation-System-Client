@@ -26,15 +26,14 @@ export const addBus = (busData) => (dispatch) => {
     );
 };
 
-export const getBuses = (query, history) => (dispatch) => {
-  axios
+export const getBuses = (query) => async (dispatch) => {
+  await axios
     .get("/bus", { params: query })
     .then((res) => {
       dispatch({
         type: GET_BUSES,
         payload: res.data,
       });
-      history.push("/buses");
     })
     .catch((err) =>
       dispatch({
