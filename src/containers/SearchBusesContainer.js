@@ -42,9 +42,9 @@ class SearchBusesContainer extends Component {
     this.props.getBuses(query).then((val) => this.props.history.push("/buses"));
   }
 
-  componentWillReceiveProps(newProps) {
+  static getDerivedStateFromProps(newProps, state) {
     if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+      return { errors: newProps.errors };
     }
   }
 

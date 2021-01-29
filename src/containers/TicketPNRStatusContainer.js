@@ -40,9 +40,9 @@ class TicketPNRStatusContainer extends Component {
     this.props.cancelTicket(query);
   }
 
-  componentWillReceiveProps(newProps) {
+  static getDerivedStateFromProps(newProps, state) {
     if (newProps.errors) {
-      this.setState({ errors: newProps.errors });
+      return { errors: newProps.errors };
     }
   }
 

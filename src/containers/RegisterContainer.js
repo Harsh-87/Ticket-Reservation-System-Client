@@ -33,11 +33,11 @@ class Register extends Component {
     this.props.registerUser(newUser, this.props.history);
   }
 
-  componentWillReceiveProps(newProps) {
+  static getDerivedStateFromProps(newProps, state) {
     if (newProps.errors) {
-      this.setState({
+      return {
         errors: newProps.errors,
-      });
+      };
     }
   }
 
