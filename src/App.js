@@ -86,6 +86,40 @@ class App extends Component {
                 />
               </>
             )}
+            <div
+              aria-live="polite"
+              aria-atomic="true"
+              style={{
+                position: "fixed",
+                bottom: "20px",
+                left: "20px",
+                minHeight: "200px",
+              }}
+            >
+              {this.props.toasts.map(({ text, id }) => (
+                <div
+                  className="toast"
+                  id={id}
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                  data-delay="4000"
+                  key={id}
+                >
+                  <div className="toast-body d-flex">
+                    {text}
+                    <button
+                      type="button"
+                      className="ml-auto mb-1 close"
+                      data-dismiss="toast"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <Footer />
         </div>
@@ -94,4 +128,8 @@ class App extends Component {
   }
 }
 
-export default connect(null, { verifyAdmin })(App);
+const mapStateToProps = (state) => ({
+  toasts: state.common.toasts,
+});
+
+export default connect(mapStateToProps, { verifyAdmin })(App);
