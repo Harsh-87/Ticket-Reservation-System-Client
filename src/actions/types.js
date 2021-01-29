@@ -7,3 +7,4 @@ export const GET_BUSES = "GET_BUSES";
 export const GET_BUS = "GET_BUS";
 export const SAVE_TICKET = "SAVE_TICKET";
 export const CLEAR_DATA = "CLEAR_DATA";
+export const SHOW_TOAST = "SHOW_TOAST";
