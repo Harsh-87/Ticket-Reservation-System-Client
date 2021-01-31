@@ -1,6 +1,6 @@
 function OpenSeat(seat, onSeatSelected) {
   return (
-    <div className="col-3">
+    <div className="col-3" key={seat.seat_no}>
       <button
         onClick={onSeatSelected.bind(this, seat)}
         className="btn btn-light p-1 m-1 openSeat"
@@ -13,7 +13,7 @@ function OpenSeat(seat, onSeatSelected) {
 
 function CloseSeat(seat, admin, onSeatSelected) {
   return (
-    <div className="col-3">
+    <div className="col-3" key={seat.seat_no}>
       <button
         onClick={onSeatSelected.bind(this, seat)}
         className="btn btn-danger p-1 m-1 closeSeat"
@@ -27,7 +27,7 @@ function CloseSeat(seat, admin, onSeatSelected) {
 
 function SelectedSeat(seat) {
   return (
-    <div className="col-3">
+    <div className="col-3" key={seat.seat_no}>
       <button className="btn btn-info p-1 m-1 selectedSeat">
         {seat.seat_no}
       </button>
