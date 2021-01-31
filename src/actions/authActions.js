@@ -1,16 +1,14 @@
 import { GET_ERRORS, SET_ADMIN_USER } from "./types";
 import axios from "../axiosInstance";
 
-export const registerUser = (userdata, history) => (dispatch) => {
-  axios
-    .post("/admin/register", userdata)
-    .then((res) => history.push("/admin/login"))
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err,
-      })
-    );
+export const registerUser = (userdata, history) => async (dispatch) => {
+  await axios.post("/admin/register", userdata).catch((err) => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err,
+    });
+    throw err;
+  });
 };
 
 export const loginUser = (userdata) => (dispatch) => {

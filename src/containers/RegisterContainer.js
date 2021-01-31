@@ -30,7 +30,10 @@ class Register extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    this.props.registerUser(newUser, this.props.history);
+    this.props
+      .registerUser(newUser)
+      .then(() => this.props.history.push("/admin/login"))
+      .catch(() => {});
   }
 
   static getDerivedStateFromProps(newProps, state) {
