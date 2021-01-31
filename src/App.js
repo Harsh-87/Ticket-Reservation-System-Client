@@ -14,7 +14,7 @@ import TicketPNRStatusContainer from "./containers/TicketPNRStatusContainer";
 import BookingStatusContainer from "./containers/BookingStatusContainer";
 import MovieSearchResultContainer from "./containers/MovieSearchResultsContainer";
 import FindBusDetailsContainer from "./containers/FindBusDetailsContainer";
-import AddBusContainer from "./containers/AddBusContainer";
+import AddMovieContainer from "./containers/AddMovieContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
   render() {
@@ -41,14 +41,14 @@ class App extends Component {
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/add-bus"
-                  component={AddBusContainer}
+                  path="/add-movie"
+                  component={AddMovieContainer}
                 />
               </Switch>
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/find-bus"
+                  path="/find-movie"
                   component={FindBusDetailsContainer}
                 />
               </Switch>

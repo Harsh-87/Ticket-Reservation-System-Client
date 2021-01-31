@@ -10,22 +10,22 @@ class DashboardContainer extends Component {
             <h1 className="display-4">Dashboard</h1>
             <div className="row justify-content-center">
               <div className="col-4 btn btn-info m-3">
-                <Link className="nav-link text-white" to="/add-bus">
-                  Add Bus
+                <Link className="nav-link text-white" to="/add-movie">
+                  Add Movie
                 </Link>
               </div>
             </div>
             <div className="row justify-content-center">
               <div className="col-4 btn btn-info m-3">
-                <Link className="nav-link text-white" to="/find-bus">
-                  Find Bus
+                <Link className="nav-link text-white" to="/find-movie">
+                  Find Movie
                 </Link>
               </div>
             </div>
             <div className="row justify-content-center">
               <div className="col-4 btn btn-info m-3">
                 <Link className="nav-link text-white" to="/search-movie">
-                  Search Bus
+                  Search Movie
                 </Link>
               </div>
             </div>
