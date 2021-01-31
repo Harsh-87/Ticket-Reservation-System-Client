@@ -24,7 +24,7 @@ class DashboardContainer extends Component {
             </div>
             <div className="row justify-content-center">
               <div className="col-4 btn btn-info m-3">
-                <Link className="nav-link text-white" to="/search-bus">
+                <Link className="nav-link text-white" to="/search-movie">
                   Search Bus
                 </Link>
               </div>

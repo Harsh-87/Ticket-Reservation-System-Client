@@ -45,7 +45,7 @@ class Navbar extends Component {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/search-bus">
+          <NavLink className="nav-link" to="/search-movie">
             Search
           </NavLink>
         </li>
@@ -56,7 +56,7 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-secondary mb-4">
         <div className="container">
           <NavLink className="navbar-brand" to="/">
-            Bus Reservation System
+            Movie Reservation System
           </NavLink>
           <button
             className="navbar-toggler"

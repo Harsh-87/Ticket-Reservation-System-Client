@@ -54,7 +54,7 @@ class App extends Component {
               </Switch>
               <Route
                 exact
-                path="/search-bus"
+                path="/search-movie"
                 component={SearchMoviesContainer}
               />
               <Route
@@ -64,7 +64,7 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/buses"
+                path="/movies"
                 component={MovieSearchResultContainer}
               />
               <Route exact path="/status" component={BookingStatusContainer} />

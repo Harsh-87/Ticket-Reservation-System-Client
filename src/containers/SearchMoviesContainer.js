@@ -39,7 +39,7 @@ class SearchMoviesContainer extends Component {
     };
     this.props
       .getMovies(query)
-      .then((val) => this.props.history.push("/buses"));
+      .then((val) => this.props.history.push("/movies"));
   }
 
   static getDerivedStateFromProps(newProps, state) {
