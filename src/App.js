@@ -10,7 +10,7 @@ import LoginContainer from "./containers/LoginContainer";
 import RegisterContainer from "./containers/RegisterContainer";
 import DashboardContainer from "./containers/DashboardContainer";
 import SearchMoviesContainer from "./containers/SearchMoviesContainer";
-import TicketPNRStatusContainer from "./containers/TicketPNRStatusContainer";
+import TicketStatusContainer from "./containers/TicketStatusContainer";
 import BookingStatusContainer from "./containers/BookingStatusContainer";
 import MovieSearchResultContainer from "./containers/MovieSearchResultsContainer";
 import FindMovieDetailsContainer from "./containers/FindMovieDetailsContainer";
@@ -57,11 +57,7 @@ class App extends Component {
                 path="/search-movie"
                 component={SearchMoviesContainer}
               />
-              <Route
-                exact
-                path="/booking"
-                component={TicketPNRStatusContainer}
-              />
+              <Route exact path="/booking" component={TicketStatusContainer} />
               <Route
                 exact
                 path="/movies"

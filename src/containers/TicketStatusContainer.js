@@ -5,11 +5,11 @@ import { getTicket, cancelTicket, clearData } from "../actions/ticketActions";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 import TicketCardComponent from "../components/tickets/TicketCardComponent";
 
-class TicketPNRStatusContainer extends Component {
+class TicketStatusContainer extends Component {
   constructor() {
     super();
     this.state = {
-      pnr_number: "",
+      ticketId: "",
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -26,7 +26,7 @@ class TicketPNRStatusContainer extends Component {
   onSubmit(e) {
     e.preventDefault();
     const query = {
-      ticketId: this.state.pnr_number,
+      ticketId: this.state.ticketId,
     };
     this.props.getTicket(query);
   }
@@ -79,13 +79,13 @@ class TicketPNRStatusContainer extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="row text-left justify-content-center">
                   <div className="col-6">
-                    <label className="text-white">PNR Number</label>
+                    <label className="text-white">Ticket Id</label>
                     <TextFieldGroup
                       type="text"
                       error={errors.text}
-                      placeholder="PNR Number"
-                      name="pnr_number"
-                      value={this.state.pnr_number}
+                      placeholder="Ticket Id"
+                      name="ticketId"
+                      value={this.state.ticketId}
                       onChange={this.onChange}
                     />
                   </div>
@@ -108,7 +108,7 @@ class TicketPNRStatusContainer extends Component {
   }
 }
 
-TicketPNRStatusContainer.propTypes = {
+TicketStatusContainer.propTypes = {
   getTicket: PropTypes.func.isRequired,
   cancelTicket: PropTypes.func.isRequired,
   clearData: PropTypes.func.isRequired,
@@ -121,5 +121,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getTicket, cancelTicket, clearData })(
-  TicketPNRStatusContainer
+  TicketStatusContainer
 );
