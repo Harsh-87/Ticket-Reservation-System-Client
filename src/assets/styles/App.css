@@ -46,7 +46,7 @@ img {
 
 .landing {
   position: relative;
-  background: url("../images/bus1.jpg") no-repeat;
+  background: url("../images/movies1.png") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -60,7 +60,7 @@ img {
 
 .search-box {
   position: relative;
-  background: url("../images/search.jpeg") no-repeat;
+  background: url("../images/movies2.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;

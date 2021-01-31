@@ -1,4 +1,4 @@
-import moviePic from "../../assets/images/bus2.jpg";
+import moviePic from "../../assets/images/movieAvatar.png";
 import TheatreComponent from "./TheatreComponent";
 
 function MovieItemComponent(props) {
