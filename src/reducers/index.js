@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import busReducer from "./busReducer";
+import movieReducer from "./movieReducer";
 import ticketReducer from "./ticketReducer";
 import errorReducer from "./errorsReducer";
 
 export default combineReducers({
   auth: authReducer,
-  busData: busReducer,
+  movieData: movieReducer,
   ticketData: ticketReducer,
   errors: errorReducer,
 });

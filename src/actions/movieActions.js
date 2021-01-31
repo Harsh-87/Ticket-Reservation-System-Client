@@ -1,20 +1,20 @@
 import axios from "../axiosInstance";
 import {
-  ADD_BUS,
-  GET_BUSES,
-  GET_BUS,
+  ADD_MOVIE,
+  GET_MOVIES,
+  GET_MOVIE,
   GET_ERRORS,
   CLEAR_ERRORS,
   CLEAR_DATA,
 } from "./types";
 
-export const addBus = (busData) => async (dispatch) => {
+export const addMovie = (movieData) => async (dispatch) => {
   dispatch(clearErrors());
   return await axios
-    .post("/bus", busData)
+    .post("/movie", movieData)
     .then((res) => {
       dispatch({
-        type: ADD_BUS,
+        type: ADD_MOVIE,
         payload: res.data,
       });
       return res.data._id;
@@ -28,52 +28,52 @@ export const addBus = (busData) => async (dispatch) => {
     });
 };
 
-export const getBuses = (query) => async (dispatch) => {
+export const getMovies = (query) => async (dispatch) => {
   await axios
-    .get("/bus", { params: query })
+    .get("/movie", { params: query })
     .then((res) => {
       dispatch({
-        type: GET_BUSES,
+        type: GET_MOVIES,
         payload: res.data,
       });
     })
     .catch((err) =>
       dispatch({
-        type: GET_BUSES,
+        type: GET_MOVIES,
         payload: null,
       })
     );
 };
 
-export const getBus = (id) => (dispatch) => {
+export const getMovie = (id) => (dispatch) => {
   axios
-    .get(`/bus/${id}`)
+    .get(`/movie/${id}`)
     .then((res) =>
       dispatch({
-        type: GET_BUS,
+        type: GET_MOVIE,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: GET_BUS,
+        type: GET_MOVIE,
         payload: null,
       })
     );
 };
 
-export const getBusAdmin = (id) => (dispatch) => {
+export const getMovieAdmin = (id) => (dispatch) => {
   axios
-    .get(`/bus/${id}/admin`)
+    .get(`/movie/${id}/admin`)
     .then((res) =>
       dispatch({
-        type: GET_BUS,
+        type: GET_MOVIE,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: GET_BUS,
+        type: GET_MOVIE,
         payload: null,
       })
     );
