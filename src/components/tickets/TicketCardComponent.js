@@ -21,8 +21,7 @@ function Element(item, value) {
 
 function TicketCardComponent(props) {
   const { ticket } = props;
-  const depart = getDateAndTime(new Date(ticket.bus.departure));
-  const arrive = getDateAndTime(new Date(ticket.bus.arrival));
+  const timing = getDateAndTime(new Date(ticket.movie.timing));
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -59,11 +58,8 @@ function TicketCardComponent(props) {
                   {Element("Mail Id", ticket.details.email)}
                 </div>
                 <div className="col-6">
-                  {Element("Company", ticket.bus.Company)}
-                  {Element("Departure", depart.time + " " + depart.date)}
-                  {Element("Arrival", arrive.time + " " + arrive.date)}
-                  {Element("From", ticket.bus.from)}
-                  {Element("To", ticket.bus.to)}
+                  {Element("Theatre", ticket.movie.theatre)}
+                  {Element("Timing", timing.time + " " + timing.date)}
                 </div>
               </div>
             </div>
