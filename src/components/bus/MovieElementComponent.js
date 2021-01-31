@@ -48,7 +48,9 @@ class MovieElementComponent extends Component {
         },
         movie: this.props.movie._id,
       };
-      this.props.bookTicket(query, this.props.history);
+      this.props
+        .bookTicket(query)
+        .then((val) => this.props.history.push("/status"));
     }
   }
 

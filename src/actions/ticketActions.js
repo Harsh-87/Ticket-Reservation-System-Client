@@ -18,16 +18,15 @@ export const getTicket = (query) => (dispatch) => {
     );
 };
 
-export const bookTicket = (ticketData, history) => (dispatch) => {
+export const bookTicket = (ticketData) => async (dispatch) => {
   dispatch(clearErrors());
-  axios
+  await axios
     .post("/ticket", ticketData)
     .then((res) => {
       dispatch({
         type: SAVE_TICKET,
         payload: res.data,
       });
-      history.push("/status");
     })
     .catch((err) =>
       dispatch({
