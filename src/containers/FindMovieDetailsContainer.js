@@ -8,11 +8,11 @@ import MovieLayoutComponent from "../components/bus/MovieLayoutComponent";
 import "../assets/styles/Ticket.css";
 import TheatreComponent from "../components/bus/TheatreComponent";
 
-class FindBusDetailsContainer extends Component {
+class FindMovieDetailsContainer extends Component {
   constructor() {
     super();
     this.state = {
-      busId: "",
+      movieId: "",
       seat_no: 0,
     };
     this.onChange = this.onChange.bind(this);
@@ -28,7 +28,7 @@ class FindBusDetailsContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.getBusAdmin(this.state.busId);
+    this.props.getMovieAdmin(this.state.movieId);
   }
 
   onSeatSelected(seat) {
@@ -40,21 +40,21 @@ class FindBusDetailsContainer extends Component {
   }
 
   render() {
-    const { bus } = this.props.busData;
+    const { movie } = this.props.movieData;
     let ticketComponents;
-    if (bus?._id) {
+    if (movie?._id) {
       ticketComponents = (
         <div className="card card-body bg-light">
           <div className="row text-dark">
             <div className="col-12">
-              <TheatreComponent bus={bus} />
+              <TheatreComponent movie={movie} />
             </div>
           </div>
           <div className="row align-items-center">
             <div className="col-5">
               <div>
                 <MovieLayoutComponent
-                  bus={bus}
+                  movie={movie}
                   onSeatSelected={this.onSeatSelected}
                   selectedSeat={this.state.seat_no}
                   admin={true}
@@ -66,7 +66,7 @@ class FindBusDetailsContainer extends Component {
                 "Select a Seat"
               ) : (
                 <TicketInfoComponent
-                  ticket={bus.seats[this.state.seat_no - 1]}
+                  ticket={movie.seats[this.state.seat_no - 1]}
                 />
               )}
             </div>
@@ -82,13 +82,13 @@ class FindBusDetailsContainer extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="row text-left justify-content-center">
                   <div className="col-6">
-                    <label className="text-white">Bus Id</label>
+                    <label className="text-white">Movie Id</label>
                     <TextFieldGroup
                       type="text"
                       error={null}
-                      placeholder="Bus Id"
-                      name="busId"
-                      value={this.state.busId}
+                      placeholder="Movie Id"
+                      name="movieId"
+                      value={this.state.movieId}
                       onChange={this.onChange}
                     />
                   </div>
@@ -103,12 +103,14 @@ class FindBusDetailsContainer extends Component {
                 </div>
               </form>
             </div>
-            <div
-              className="m-2"
-              style={{ maxHeight: "500px", overflow: "scroll" }}
-            >
-              {bus?._id === undefined ? "" : ticketComponents}
-            </div>
+            {movie?._id === undefined ? null : (
+              <div
+                className="m-2"
+                style={{ maxHeight: "500px", overflow: "scroll" }}
+              >
+                {ticketComponents}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -116,16 +118,16 @@ class FindBusDetailsContainer extends Component {
   }
 }
 
-FindBusDetailsContainer.propTypes = {
-  getBusAdmin: PropTypes.func.isRequired,
+FindMovieDetailsContainer.propTypes = {
+  getMovieAdmin: PropTypes.func.isRequired,
   clearData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  busData: state.busData,
+  movieData: state.movieData,
 });
 
 export default connect(mapStateToProps, {
-  getBusAdmin: getMovieAdmin,
+  getMovieAdmin,
   clearData,
-})(FindBusDetailsContainer);
+})(FindMovieDetailsContainer);

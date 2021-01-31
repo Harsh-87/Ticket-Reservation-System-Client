@@ -13,7 +13,7 @@ import SearchMoviesContainer from "./containers/SearchMoviesContainer";
 import TicketPNRStatusContainer from "./containers/TicketPNRStatusContainer";
 import BookingStatusContainer from "./containers/BookingStatusContainer";
 import MovieSearchResultContainer from "./containers/MovieSearchResultsContainer";
-import FindBusDetailsContainer from "./containers/FindBusDetailsContainer";
+import FindMovieDetailsContainer from "./containers/FindMovieDetailsContainer";
 import AddMovieContainer from "./containers/AddMovieContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
 class App extends Component {
@@ -49,7 +49,7 @@ class App extends Component {
                 <PrivateRoute
                   exact
                   path="/find-movie"
-                  component={FindBusDetailsContainer}
+                  component={FindMovieDetailsContainer}
                 />
               </Switch>
               <Route
