@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { clearData, getMovieAdmin } from "../actions/movieActions";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 import TicketInfoComponent from "../components/tickets/TicketInfoComponent";
-import MovieLayoutComponent from "../components/bus/MovieLayoutComponent";
+import MovieLayoutComponent from "../components/movie/MovieLayoutComponent";
 import "../assets/styles/Ticket.css";
-import TheatreComponent from "../components/bus/TheatreComponent";
+import TheatreComponent from "../components/movie/TheatreComponent";
 
 class FindMovieDetailsContainer extends Component {
   constructor() {

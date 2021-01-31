@@ -132,7 +132,7 @@ class AddMovieContainer extends Component {
                           : "disabled"
                       }
                     >
-                      <span>Add Bus</span>
+                      <span>Add Movie</span>
                       <i className="fas fa-search p-2"></i>
                     </button>
                   </div>

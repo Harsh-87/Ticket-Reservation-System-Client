@@ -4,7 +4,7 @@ import TheatreComponent from "./TheatreComponent";
 function MovieItemComponent(props) {
   const { toggleView, movie } = props;
   return (
-    <div className="card card-body bg-light mx-5 my-4 busItem">
+    <div className="card card-body bg-light mx-5 my-4 movieItem">
       <div className="row align-items-center">
         <div className="col-2">
           <img className="rounded-circle" src={moviePic} alt="Moviepic" />

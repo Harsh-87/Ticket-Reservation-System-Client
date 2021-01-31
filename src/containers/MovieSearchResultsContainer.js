@@ -1,7 +1,7 @@
 import React from "react";
-import MovieElementComponent from "../components/bus/MovieElementComponent";
+import MovieElementComponent from "../components/movie/MovieElementComponent";
 import store from "../store";
-import "../assets/styles/Bus.css";
+import "../assets/styles/Movie.css";
 import { useHistory } from "react-router-dom";
 
 function MovieSearchResultContainer() {
