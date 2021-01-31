@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addBus, clearData } from "../actions/busActions";
+import { addMovie, clearData } from "../actions/movieActions";
 import SelectListGroup from "../components/common/SelectListGroup";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 import DatePicker from "react-datepicker";
@@ -228,4 +228,6 @@ const mapStateToProps = (state) => ({
   busData: state.busData,
 });
 
-export default connect(mapStateToProps, { addBus, clearData })(AddBusContainer);
+export default connect(mapStateToProps, { addMovie, clearData })(
+  AddBusContainer
+);

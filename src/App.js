@@ -9,10 +9,10 @@ import Footer from "./components/layout/Footer";
 import LoginContainer from "./containers/LoginContainer";
 import RegisterContainer from "./containers/RegisterContainer";
 import DashboardContainer from "./containers/DashboardContainer";
-import SearchBusesContainer from "./containers/SearchBusesContainer";
+import SearchMoviesContainer from "./containers/SearchMoviesContainer";
 import TicketPNRStatusContainer from "./containers/TicketPNRStatusContainer";
 import BookingStatusContainer from "./containers/BookingStatusContainer";
-import BusSearchResultContainer from "./containers/BusSearchResultsContainer";
+import MovieSearchResultContainer from "./containers/MovieSearchResultsContainer";
 import FindBusDetailsContainer from "./containers/FindBusDetailsContainer";
 import AddBusContainer from "./containers/AddBusContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -55,14 +55,18 @@ class App extends Component {
               <Route
                 exact
                 path="/search-bus"
-                component={SearchBusesContainer}
+                component={SearchMoviesContainer}
               />
               <Route
                 exact
                 path="/booking"
                 component={TicketPNRStatusContainer}
               />
-              <Route exact path="/buses" component={BusSearchResultContainer} />
+              <Route
+                exact
+                path="/buses"
+                component={MovieSearchResultContainer}
+              />
               <Route exact path="/status" component={BookingStatusContainer} />
             </div>
             <Footer />

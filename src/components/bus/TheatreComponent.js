@@ -15,31 +15,22 @@ function DateElement({ date }) {
   );
 }
 
-function JourneyComponent({ bus }) {
-  const departure = new Date(bus.departure);
-  const arrival = new Date(bus.arrival);
+function TheatreComponent({ movie }) {
+  const timing = new Date(movie.timing);
   return (
     <div>
       <div className="row align-content-center mx-5">
         <div className="col-9 text-left">
-          <span className="h2 m-0">{bus.Company}</span>
+          <span className="h2 m-0">{movie.theatre}</span>
         </div>
       </div>
       <div className="row align-content-center mx-5">
-        <div className="col-4 text-left">
-          <DateElement date={departure} />
-          <p className="mb-4">{bus.from}</p>
-        </div>
-        <div className="col-4">
-          <hr />
-        </div>
-        <div className="col-4 text-right">
-          <DateElement date={arrival} />
-          <p className="mb-2">{bus.to}</p>
+        <div className="col-12 text-left">
+          <DateElement date={timing} />
         </div>
       </div>
     </div>
   );
 }
 
-export default JourneyComponent;
+export default TheatreComponent;

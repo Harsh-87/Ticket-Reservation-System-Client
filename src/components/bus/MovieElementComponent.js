@@ -2,10 +2,10 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bookTicket } from "../../actions/ticketActions";
-import BusItemComponent from "./BusItemComponent";
-import BusPopupComponent from "./BusPopupComponent";
+import MovieItemComponent from "./MovieItemComponent";
+import MoviePopupComponent from "./MoviePopupComponent";
 
-class BusElementComponent extends Component {
+class MovieElementComponent extends Component {
   constructor() {
     super();
     this.state = {
@@ -46,7 +46,7 @@ class BusElementComponent extends Component {
           email: this.state.email,
           mobile: this.state.mobile,
         },
-        bus: this.props.bus._id,
+        movie: this.props.movie._id,
       };
       this.props.bookTicket(query, this.props.history);
     }
@@ -57,31 +57,31 @@ class BusElementComponent extends Component {
   }
 
   render() {
-    const bus = this.props.bus;
-    const busItemComponent = (
-      <BusItemComponent toggleView={this.toggleView} bus={bus} />
+    const movie = this.props.movie;
+    const movieItemComponent = (
+      <MovieItemComponent toggleView={this.toggleView} movie={movie} />
     );
-    const busLayoutComponent = (
-      <BusPopupComponent
+    const movieLayoutComponent = (
+      <MoviePopupComponent
         toggleView={this.toggleView}
-        bus={bus}
+        movie={movie}
         state={this.state}
         onChange={this.onChange}
         onSubmit={this.onSubmit}
         onSeatSelected={this.onSeatSelected}
       />
     );
-    return this.state.showLayout ? busLayoutComponent : busItemComponent;
+    return this.state.showLayout ? movieLayoutComponent : movieItemComponent;
   }
 }
 
-BusElementComponent.propTypes = {
+MovieElementComponent.propTypes = {
   bookTicket: PropTypes.func.isRequired,
-  bus: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  busData: state.busData,
+  movieData: state.movieData,
 });
 
-export default connect(mapStateToProps, { bookTicket })(BusElementComponent);
+export default connect(mapStateToProps, { bookTicket })(MovieElementComponent);

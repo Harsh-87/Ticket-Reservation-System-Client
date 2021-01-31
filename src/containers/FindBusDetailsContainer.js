@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { clearData, getBusAdmin } from "../actions/busActions";
+import { clearData, getMovieAdmin } from "../actions/movieActions";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 import TicketInfoComponent from "../components/tickets/TicketInfoComponent";
-import BusLayoutComponent from "../components/bus/BusLayoutComponent";
+import MovieLayoutComponent from "../components/bus/MovieLayoutComponent";
 import "../assets/styles/Ticket.css";
-import JourneyComponent from "../components/bus/JourneyComponent";
+import TheatreComponent from "../components/bus/TheatreComponent";
 
 class FindBusDetailsContainer extends Component {
   constructor() {
@@ -47,13 +47,13 @@ class FindBusDetailsContainer extends Component {
         <div className="card card-body bg-light">
           <div className="row text-dark">
             <div className="col-12">
-              <JourneyComponent bus={bus} />
+              <TheatreComponent bus={bus} />
             </div>
           </div>
           <div className="row align-items-center">
             <div className="col-5">
               <div>
-                <BusLayoutComponent
+                <MovieLayoutComponent
                   bus={bus}
                   onSeatSelected={this.onSeatSelected}
                   selectedSeat={this.state.seat_no}
@@ -125,6 +125,7 @@ const mapStateToProps = (state) => ({
   busData: state.busData,
 });
 
-export default connect(mapStateToProps, { getBusAdmin, clearData })(
-  FindBusDetailsContainer
-);
+export default connect(mapStateToProps, {
+  getBusAdmin: getMovieAdmin,
+  clearData,
+})(FindBusDetailsContainer);

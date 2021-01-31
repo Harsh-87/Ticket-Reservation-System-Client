@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBuses } from "../actions/busActions";
-import SelectListGroup from "../components/common/SelectListGroup";
+import { getMovies } from "../actions/movieActions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TextFieldGroup from "../components/common/TextFieldGroup";
 
-class SearchBusesContainer extends Component {
+class SearchMoviesContainer extends Component {
   constructor() {
     super();
     this.state = {
-      from: "",
-      to: "",
-      departure: new Date(),
+      title: "",
+      timing: new Date(),
       errors: {},
     };
     this.onDateChange = this.onDateChange.bind(this);
@@ -21,7 +20,7 @@ class SearchBusesContainer extends Component {
   }
 
   onDateChange(value) {
-    this.setState({ departure: value });
+    this.setState({ timing: value });
   }
 
   onChange(e) {
@@ -32,14 +31,15 @@ class SearchBusesContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    let departure = this.state.departure;
-    departure.setHours(0, 0, 0);
+    let timing = this.state.timing;
+    timing.setHours(0, 0, 0);
     const query = {
-      from: this.state.from,
-      to: this.state.to,
-      departure: departure,
+      title: this.state.title,
+      timing: timing,
     };
-    this.props.getBuses(query).then((val) => this.props.history.push("/buses"));
+    this.props
+      .getMovies(query)
+      .then((val) => this.props.history.push("/buses"));
   }
 
   static getDerivedStateFromProps(newProps, state) {
@@ -51,14 +51,6 @@ class SearchBusesContainer extends Component {
   render() {
     const { errors } = this.state;
     const today = new Date();
-    const options = [
-      { label: "Select City", value: 0 },
-      { label: "Delhi", value: "Delhi" },
-      { label: "Kolkata", value: "Kolkata" },
-      { label: "Mumbai", value: "Mumbai" },
-      { label: "Ranchi", value: "Ranchi" },
-      { label: "Lucknow", value: "Lucknow" },
-    ];
     return (
       <div className="search-box">
         <div className="dark-overlay search-box-inner text-light">
@@ -66,37 +58,23 @@ class SearchBusesContainer extends Component {
             <div className="col-md-8 m-auto">
               <form onSubmit={this.onSubmit}>
                 <div className="row text-left">
-                  <div className="col-4">
-                    <label className="text-white">From</label>
-                    <SelectListGroup
-                      placeholder="From"
-                      name="from"
-                      value={this.state.from}
+                  <div className="col-6">
+                    <label className="text-white">Title</label>
+                    <TextFieldGroup
+                      placeholder="Title"
+                      name="title"
+                      value={this.state.title}
                       onChange={this.onChange}
-                      onSelect={this.onChange}
-                      options={options}
                       error={errors.text}
                     />
                   </div>
-                  <div className="col-4">
-                    <label className="text-white">To</label>
-                    <SelectListGroup
-                      placeholder="To"
-                      name="to"
-                      value={this.state.to}
-                      onChange={this.onChange}
-                      onSelect={this.onChange}
-                      options={options}
-                      error={errors.text}
-                    />
-                  </div>
-                  <div className="col-4">
+                  <div className="col-6">
                     <label className="text-white">Departure Date</label>
                     <DatePicker
                       className="btn text-left p-2"
-                      selected={this.state.departure}
+                      selected={this.state.timing}
                       placeholderText="Select Date"
-                      minDate={today}
+                      // minDate={today}
                       dateFormat="dd/MM/yyyy"
                       onSelect={this.onDateChange}
                       onChange={this.onDateChange}
@@ -109,9 +87,7 @@ class SearchBusesContainer extends Component {
                       className="btn btn-info mt-4"
                       type="submit"
                       disabled={
-                        this.state.from && this.state.to && this.state.departure
-                          ? ""
-                          : "disabled"
+                        this.state.title && this.state.timing ? "" : "disabled"
                       }
                     >
                       <span>Search</span>
@@ -128,8 +104,8 @@ class SearchBusesContainer extends Component {
   }
 }
 
-SearchBusesContainer.propTypes = {
-  getBuses: PropTypes.func.isRequired,
+SearchMoviesContainer.propTypes = {
+  getMovies: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
 };
 
@@ -137,4 +113,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { getBuses })(SearchBusesContainer);
+export default connect(mapStateToProps, { getMovies })(SearchMoviesContainer);

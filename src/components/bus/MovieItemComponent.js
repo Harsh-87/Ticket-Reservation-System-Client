@@ -1,16 +1,16 @@
-import bus_pic from "../../assets/images/bus2.jpg";
-import JourneyComponent from "./JourneyComponent";
+import moviePic from "../../assets/images/bus2.jpg";
+import TheatreComponent from "./TheatreComponent";
 
-function BusItemComponent(props) {
-  const { toggleView, bus } = props;
+function MovieItemComponent(props) {
+  const { toggleView, movie } = props;
   return (
     <div className="card card-body bg-light mx-5 my-4 busItem">
       <div className="row align-items-center">
         <div className="col-2">
-          <img className="rounded-circle" src={bus_pic} alt="BusPic" />
+          <img className="rounded-circle" src={moviePic} alt="Moviepic" />
         </div>
         <div className="col-8 border-left border-right">
-          <JourneyComponent bus={bus} />
+          <TheatreComponent movie={movie} />
         </div>
         <div className="col-2">
           <div className="text-info h3 p-2">Rs 850 /-</div>
@@ -24,4 +24,4 @@ function BusItemComponent(props) {
     </div>
   );
 }
-export default BusItemComponent;
+export default MovieItemComponent;

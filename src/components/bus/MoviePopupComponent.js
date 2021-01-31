@@ -1,9 +1,16 @@
-import JourneyComponent from "./JourneyComponent";
-import BusLayoutComponent from "./BusLayoutComponent";
+import TheatreComponent from "./TheatreComponent";
+import MovieLayoutComponent from "./MovieLayoutComponent";
 import BookingFormComponent from "./BookingFormComponent";
 
-function BusPopupComponent(props) {
-  const { toggleView, bus, onSeatSelected, onSubmit, onChange, state } = props;
+function MoviePopupComponent(props) {
+  const {
+    toggleView,
+    movie,
+    onSeatSelected,
+    onSubmit,
+    onChange,
+    state,
+  } = props;
   return (
     <div className="text-left p-5 border floatLayout">
       <button className="btn btn-secondary" onClick={toggleView}>
@@ -12,8 +19,8 @@ function BusPopupComponent(props) {
       <div className="row m-3 align-items-center">
         <div className="col-5">
           <div>
-            <BusLayoutComponent
-              bus={bus}
+            <MovieLayoutComponent
+              movie={movie}
               onSeatSelected={onSeatSelected}
               selectedSeat={state.seat_no}
               admin={false}
@@ -21,7 +28,7 @@ function BusPopupComponent(props) {
           </div>
         </div>
         <div className="col-7">
-          <JourneyComponent bus={bus} />
+          <TheatreComponent movie={movie} />
           <BookingFormComponent
             onSubmit={onSubmit}
             onChange={onChange}
@@ -33,4 +40,4 @@ function BusPopupComponent(props) {
   );
 }
 
-export default BusPopupComponent;
+export default MoviePopupComponent;

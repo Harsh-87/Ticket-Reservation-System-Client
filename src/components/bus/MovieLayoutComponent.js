@@ -35,8 +35,8 @@ function SelectedSeat(seat) {
   );
 }
 
-function BusLayoutComponent(props) {
-  const { bus, onSeatSelected, selectedSeat, admin } = props;
+function MovieLayoutComponent(props) {
+  const { movie, onSeatSelected, selectedSeat, admin } = props;
   return (
     <div className="border p-3">
       <div className="row">
@@ -57,7 +57,7 @@ function BusLayoutComponent(props) {
         </div>
       </div>
       <div className="row">
-        {bus.seats.map((seat) => {
+        {movie.seats.map((seat) => {
           if (seat.seat_no === selectedSeat) return SelectedSeat(seat);
           else if (seat.status === "open")
             return OpenSeat(seat, onSeatSelected);
@@ -68,4 +68,4 @@ function BusLayoutComponent(props) {
   );
 }
 
-export default BusLayoutComponent;
+export default MovieLayoutComponent;
