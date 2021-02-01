@@ -39,6 +39,22 @@ export const logoutUser = () => (dispatch) => {
     );
 };
 
+export const verifyAdmin = () => async (dispatch) => {
+  return await axios
+    .get("/admin/verifyAdmin")
+    .then((res) => {
+      dispatch(setAdminUser(res.data.user));
+      return true;
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err,
+      });
+      return false;
+    });
+};
+
 export const setAdminUser = (user) => {
   return {
     type: SET_ADMIN_USER,

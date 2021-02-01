@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
+import { showToast } from "../actions/commonActions";
 import TextFieldGroup from "../components/common/TextFieldGroup";
 class Login extends Component {
   constructor() {
@@ -30,6 +31,7 @@ class Login extends Component {
       password: this.state.password,
     };
     this.props.loginUser(user);
+    this.props.showToast("logged in successfully");
   }
 
   componentDidMount() {
@@ -98,4 +100,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, showToast })(Login);

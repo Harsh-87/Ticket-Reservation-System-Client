@@ -7,3 +7,4 @@ export const GET_MOVIES = "GET_MOVIES";
 export const GET_MOVIE = "GET_MOVIE";
 export const SAVE_TICKET = "SAVE_TICKET";
 export const CLEAR_DATA = "CLEAR_DATA";
+export const SHOW_TOAST = "SHOW_TOAST";

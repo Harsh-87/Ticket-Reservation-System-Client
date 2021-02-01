@@ -1,8 +1,6 @@
 import "./assets/styles/App.css";
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
 import NavBar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
@@ -16,61 +14,70 @@ import MovieSearchResultContainer from "./containers/MovieSearchResultsContainer
 import FindMovieDetailsContainer from "./containers/FindMovieDetailsContainer";
 import AddMovieContainer from "./containers/AddMovieContainer";
 import PrivateRoute from "./components/common/PrivateRoute";
+import { verifyAdmin } from "./actions/authActions";
+import { connect } from "react-redux";
+
 class App extends Component {
+  state = {
+    isLoading: true,
+  };
+
+  async componentDidMount() {
+    await this.props.verifyAdmin();
+    this.setState({ isLoading: false });
+  }
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <div className="App">
-            <NavBar />
-            <div style={{ minHeight: "75vh" }}>
-              <Route exact path="/" component={Landing} />
-              <Route
+      <Router>
+        <div className="App">
+          <NavBar />
+          <div style={{ minHeight: "75vh" }}>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/admin/register" component={RegisterContainer} />
+            <Route exact path="/admin/login" component={LoginContainer} />
+            <Switch>
+              <PrivateRoute
                 exact
-                path="/admin/register"
-                component={RegisterContainer}
+                path="/admin/dashboard"
+                component={DashboardContainer}
               />
-              <Route exact path="/admin/login" component={LoginContainer} />
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/admin/dashboard"
-                  component={DashboardContainer}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/add-movie"
-                  component={AddMovieContainer}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/find-movie"
-                  component={FindMovieDetailsContainer}
-                />
-              </Switch>
-              <Route
+            </Switch>
+            <Switch>
+              <PrivateRoute
                 exact
-                path="/search-movie"
-                component={SearchMoviesContainer}
+                path="/add-movie"
+                component={AddMovieContainer}
               />
-              <Route exact path="/booking" component={TicketStatusContainer} />
-              <Route
+            </Switch>
+            <Switch>
+              <PrivateRoute
                 exact
-                path="/movies"
-                component={MovieSearchResultContainer}
+                path="/find-movie"
+                component={FindMovieDetailsContainer}
               />
-              <Route exact path="/status" component={BookingStatusContainer} />
-            </div>
-            <Footer />
+            </Switch>
+            <Route
+              exact
+              path="/search-movie"
+              component={SearchMoviesContainer}
+            />
+            <Route exact path="/booking" component={TicketStatusContainer} />
+            <Route
+              exact
+              path="/movies"
+              component={MovieSearchResultContainer}
+            />
+            <Route exact path="/status" component={BookingStatusContainer} />
           </div>
-        </Router>
-      </Provider>
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  toasts: state.common.toasts,
+});
+
+export default connect(mapStateToProps, { verifyAdmin })(App);
