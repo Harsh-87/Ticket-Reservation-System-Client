@@ -32,42 +32,60 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <div style={{ minHeight: "75vh" }}>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/admin/register" component={RegisterContainer} />
-            <Route exact path="/admin/login" component={LoginContainer} />
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/admin/dashboard"
-                component={DashboardContainer}
-              />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/add-movie"
-                component={AddMovieContainer}
-              />
-            </Switch>
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/find-movie"
-                component={FindMovieDetailsContainer}
-              />
-            </Switch>
-            <Route
-              exact
-              path="/search-movie"
-              component={SearchMoviesContainer}
-            />
-            <Route exact path="/booking" component={TicketStatusContainer} />
-            <Route
-              exact
-              path="/movies"
-              component={MovieSearchResultContainer}
-            />
-            <Route exact path="/status" component={BookingStatusContainer} />
+            {this.state.isLoading ? (
+              <div>Loading</div>
+            ) : (
+              <>
+                <Route exact path="/" component={Landing} />
+                <Route
+                  exact
+                  path="/admin/register"
+                  component={RegisterContainer}
+                />
+                <Route exact path="/admin/login" component={LoginContainer} />
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/admin/dashboard"
+                    component={DashboardContainer}
+                  />
+                </Switch>
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/add-movie"
+                    component={AddMovieContainer}
+                  />
+                </Switch>
+                <Switch>
+                  <PrivateRoute
+                    exact
+                    path="/find-movie"
+                    component={FindMovieDetailsContainer}
+                  />
+                </Switch>
+                <Route
+                  exact
+                  path="/search-movie"
+                  component={SearchMoviesContainer}
+                />
+                <Route
+                  exact
+                  path="/booking"
+                  component={TicketStatusContainer}
+                />
+                <Route
+                  exact
+                  path="/movies"
+                  component={MovieSearchResultContainer}
+                />
+                <Route
+                  exact
+                  path="/status"
+                  component={BookingStatusContainer}
+                />
+              </>
+            )}
           </div>
           <Footer />
         </div>
